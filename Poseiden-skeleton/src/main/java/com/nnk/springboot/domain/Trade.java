@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain;
 
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
@@ -7,6 +9,21 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "trade")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Trade {
     // TODO: Map columns in data table TRADE with corresponding java fields
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer tradeId;
+    @Column(name="account")
+    private String account;
+    @Column(name="type")
+    private String type;
+    @Column(name="buy_quantity")
+    private Double buyQuantity;
+
 }

@@ -1,0 +1,58 @@
+package com.nnk.springboot.IT;
+
+import com.nnk.springboot.application.Application;
+import com.nnk.springboot.domain.BidList;
+import com.nnk.springboot.domain.RuleName;
+import com.nnk.springboot.repositories.BidListRepository;
+import com.nnk.springboot.repositories.RuleNameRepository;
+import com.nnk.springboot.services.BidListService;
+import com.nnk.springboot.services.IBidListService;
+import com.nnk.springboot.services.IRuleNameService;
+import com.nnk.springboot.services.RuleNameService;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
+import java.util.Optional;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = {Application.class, RuleNameService.class, IRuleNameService.class})
+@EntityScan(basePackageClasses = {RuleName.class})
+public class RuleIT {
+
+	@Autowired
+	private RuleNameRepository ruleNameRepository;
+
+	@Test
+	public void ruleTest() {
+		RuleName rule = RuleName.builder()
+				.name("Rule Name").description("Description").json("Json").template("Template")
+				.sqlStr("SQL").sqlPart("SQL Part").build();
+
+		// Save
+		rule = ruleNameRepository.save(rule);
+		Assert.assertNotNull(rule.getId());
+		Assert.assertTrue(rule.getName().equals("Rule Name"));
+
+		// Update
+		rule.setName("Rule Name Update");
+		rule = ruleNameRepository.save(rule);
+		Assert.assertTrue(rule.getName().equals("Rule Name Update"));
+
+		// Find
+		List<RuleName> listResult = ruleNameRepository.findAll();
+		Assert.assertTrue(listResult.size() > 0);
+
+		// Delete
+		Integer id = rule.getId();
+		ruleNameRepository.delete(rule);
+		Optional<RuleName> ruleList = ruleNameRepository.findById(id);
+		Assert.assertFalse(ruleList.isPresent());
+	}
+}
