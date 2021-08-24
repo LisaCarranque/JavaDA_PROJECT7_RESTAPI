@@ -1,13 +1,11 @@
 package com.nnk.springboot.domain;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
-
 
 @Entity
 @Table(name = "curve_point")
@@ -17,15 +15,17 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CurvePoint {
-    // TODO: Map columns in data table CURVEPOINT with corresponding java fields
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(name="curve_id")
-    @NotNull
+    @Column(name = "curve_id")
+    @NotNull(message = "must not be null")
     private Integer curveId;
-    @Column(name="value")
+    @Column(name = "value")
+    @NotNull(message = "must not be null")
     private Double value;
-    @Column(name="term")
+    @Column(name = "term")
+    @NotNull(message = "must not be null")
     private Double term;
 }

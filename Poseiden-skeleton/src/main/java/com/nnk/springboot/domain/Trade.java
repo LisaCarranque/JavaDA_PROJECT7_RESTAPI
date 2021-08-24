@@ -3,9 +3,7 @@ package com.nnk.springboot.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.sql.Timestamp;
-
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "trade")
@@ -15,15 +13,16 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class Trade {
-    // TODO: Map columns in data table TRADE with corresponding java fields
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tradeId;
-    @Column(name="account")
+    @Column(name = "account")
     private String account;
-    @Column(name="type")
+    @Column(name = "type")
     private String type;
-    @Column(name="buy_quantity")
+    @Column(name = "buy_quantity")
+    @NotNull(message = "must not be null")
     private Double buyQuantity;
 
 }

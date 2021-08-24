@@ -10,12 +10,11 @@ public interface IUserService {
 
     public User add(User user);
 
-    public User validate(User user);
-
     public User update(User user);
 
     public User getById(Integer id);
 
     public void delete(User user);
 
+    User getByUsername(String username);
 }
