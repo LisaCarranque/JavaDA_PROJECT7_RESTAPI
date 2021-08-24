@@ -13,8 +13,9 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 public class User {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotBlank(message = "Username is mandatory")
     private String username;
@@ -22,7 +23,7 @@ public class User {
     private String password;
     @NotBlank(message = "FullName is mandatory")
     private String fullname;
-    @NotBlank(message = "Role is mandatory")
-    private String role;
+    @Column(columnDefinition = "varchar(25) default 'USER'")
+    private String role = "USER";
 
 }

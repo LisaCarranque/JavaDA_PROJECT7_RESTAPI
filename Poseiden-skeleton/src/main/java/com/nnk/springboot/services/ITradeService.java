@@ -10,8 +10,6 @@ public interface ITradeService {
 
     public Trade add(Trade trade);
 
-    public Trade validate(Trade trade);
-
     public Trade update(Trade trade);
 
     public Trade getById(Integer id);

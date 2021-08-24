@@ -1,7 +1,8 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
-import com.nnk.springboot.services.UserService;
+import com.nnk.springboot.services.IUserService;
+import com.nnk.springboot.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,15 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+/**
+ * This class is responsible for mapping User CRUD
+ */
 @Controller
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @RequestMapping("/user/list")
-    public String home(Model model)
-    {
+    public String home(Model model) {
         model.addAttribute("users", userService.findAll());
         return "user/list";
     }
@@ -34,14 +37,30 @@ public class UserController {
 
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result, Model model) {
+        if (userService.getByUsername(user.getUsername()) != null) {
+            String errorMessage = "Username unavailable";
+            model.addAttribute("errorMessage", errorMessage);
+            return "user/add";
+        }
         if (!result.hasErrors()) {
+            if (!UserUtils.validatePassword(user.getPassword())) {
+                String errorMessage = "Password should contain at least one small letter, one capital letter,\" +\n" +
+                        "  8 characters, one number and one symbol";
+                model.addAttribute("errorMessage", errorMessage);
+                return "/user/add";
+            }
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
             userService.add(user);
+            String successMessage = "Account created";
+            model.addAttribute("successMessage", successMessage);
             model.addAttribute("users", userService.findAll());
-            return "redirect:/user/list";
+            return "login";
+        } else {
+            String errorMessage = "Invalid data. Please check your data.";
+            model.addAttribute("errorMessage", errorMessage);
+            return "user/add";
         }
-        return "user/add";
     }
 
     @GetMapping("/user/update/{id}")
@@ -58,7 +77,6 @@ public class UserController {
         if (result.hasErrors()) {
             return "user/update";
         }
-
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
         user.setId(id);

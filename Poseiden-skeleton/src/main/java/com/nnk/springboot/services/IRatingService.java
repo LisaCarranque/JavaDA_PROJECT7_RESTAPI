@@ -10,8 +10,6 @@ public interface IRatingService {
 
     public Rating add(Rating rating);
 
-    public Rating validate(Rating rating);
-
     public Rating update(Rating rating);
 
     public Rating getById(Integer id);
