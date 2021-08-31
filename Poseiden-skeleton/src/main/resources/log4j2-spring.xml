@@ -29,8 +29,6 @@
             <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile" />
         </Root>
-
-        <Logger name="spring" level="trace"></Logger>
     </Loggers>
 
 </Configuration>

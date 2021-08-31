@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@SpringBootApplication
 @Log4j2
+@SpringBootApplication
 @Configuration
 @ComponentScan({"com.nnk.springboot"})
 @EnableAutoConfiguration
@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
 public class Application {
 
     public static void main(String[] args) {
+        log.info("init app");
         SpringApplication.run(Application.class, args);
     }
 

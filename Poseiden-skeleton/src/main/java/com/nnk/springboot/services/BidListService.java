@@ -10,20 +10,32 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+/**
+ * This class is responsible for managing bidList data by calling BidListRepository methods
+ */
 @Log4j2
+@Service
 public class BidListService implements IBidListService {
 
     @Autowired
     BidListRepository bidListRepository;
 
+    /**
+     * This method displays all bidlists by calling findAll method from BidListRepository
+     * @return a list of all bidList existing in database
+     */
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
     public List<BidList> findAll() {
         log.info("Display all bidLists");
         return bidListRepository.findAll();
     }
 
+    /**
+     * This method adds a bidList by calling save method from BidListRepository
+     * @param bidList the bidList to add
+     * @return the new bidList saved into database
+     */
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public BidList add(BidList bidList) {
@@ -31,6 +43,11 @@ public class BidListService implements IBidListService {
         return bidListRepository.save(bidList);
     }
 
+    /**
+     * This method updates a bidList by calling save method from BidListRepository
+     * @param bidList the bidList to update
+     * @return the updated bidList
+     */
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public BidList update(BidList bidList) {
@@ -38,13 +55,22 @@ public class BidListService implements IBidListService {
         return bidListRepository.save(bidList);
     }
 
+    /**
+     * This method selects an existing bidList by id from database by calling getOne method of BidListRepository
+     * @param id the id of the targeted bidList
+     * @return the selected bidList from database
+     */
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
     public BidList getById(Integer id) {
         log.info("Get a bidList by id");
         return bidListRepository.getOne(id);
     }
 
+    /**
+     * This method removes a bidList from database by calling delete method from BidListRepository
+     * @param bidList the bidList to remove
+     */
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void delete(BidList bidList) {
@@ -53,10 +79,11 @@ public class BidListService implements IBidListService {
     }
 
     /**
-     * This method is responsible for removing all bidList from database
+     * This method is responsible for removing all bidList entries from database
      */
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void clearDataBase() {
+        log.info("Clear database");
         bidListRepository.deleteAll();
     }
 }

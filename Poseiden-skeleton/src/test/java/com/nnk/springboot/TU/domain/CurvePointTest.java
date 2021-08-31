@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
 public class CurvePointTest {
@@ -31,6 +32,15 @@ public class CurvePointTest {
         assertEquals(Integer.valueOf(1), curvePoint.getCurveId());
         assertEquals(Double.valueOf(10.00), curvePoint.getValue());
         assertEquals(Double.valueOf(10.00), curvePoint.getTerm());
+    }
+
+    @Test
+    public void testToString() {
+        CurvePoint curvePoint = CurvePoint.builder()
+                .id(1).curveId(1).value(10.00).term(10.00).build();
+        assertNotNull(curvePoint.toString());
+        CurvePoint curvePoint1 = CurvePoint.builder().build();
+        //assertEquals("", curvePoint1.toString());
     }
 
 }

@@ -35,7 +35,7 @@
                     <p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                 </div>
             </div>
-            <div class="alert alert-danger" th:if="${errorMessage!=null}"
+            <div class="col-sm-4 alert alert-danger" th:if="${errorMessage!=null}"
                  th:text="${errorMessage!=null?errorMessage:null}"></div>
             <div class="form-group">
                 <div class="col-sm-12">

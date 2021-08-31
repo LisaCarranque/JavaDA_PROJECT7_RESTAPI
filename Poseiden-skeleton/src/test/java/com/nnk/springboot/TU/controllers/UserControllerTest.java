@@ -45,6 +45,33 @@ public class UserControllerTest {
     }
 
     @Test
+    public void validateUsernameUnavailable() {
+        User user = User.builder().id(1).username("User Name")
+                .fullname("Full Name").password("Password$2021").role("Role").build();
+        when(userService.getByUsername(user.getUsername())).thenReturn(user);
+        userController.validate(user, bindingResult, model);
+        verifyNoMoreInteractions(userService);
+    }
+
+    @Test
+    public void validatePasswordInvalid() {
+        User user = User.builder().id(1).username("User Name")
+                .fullname("Full Name").password("Password").role("Role").build();
+        when(userService.getByUsername(user.getUsername())).thenReturn(null);
+        userController.validate(user, bindingResult, model);
+        verifyNoMoreInteractions(userService);
+    }
+
+    @Test
+    public void validateCredentialsInvalid() {
+        User user = User.builder().id(1).username("User Name")
+                .fullname("Full Name").password("").role("Role").build();
+        when(userService.getByUsername(user.getUsername())).thenReturn(null);
+        userController.validate(user, bindingResult, model);
+        verifyNoMoreInteractions(userService);
+    }
+
+    @Test
     public void showUpdateForm() {
         User user = User.builder().id(1).username("User Name")
                 .fullname("Full Name").password("Password").role("Role").build();
@@ -71,7 +98,6 @@ public class UserControllerTest {
         verify(userService, times(1)).getById(1);
         verify(userService, times(1)).delete(user);
     }
-
 
 }
 
