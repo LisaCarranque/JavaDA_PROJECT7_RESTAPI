@@ -17,4 +17,6 @@ public interface IUserService {
     public void delete(User user);
 
     User getByUsername(String username);
+/*
+    User checkPassword(String username, String password);*/
 }

@@ -21,7 +21,7 @@ public class User {
     private String username;
     @NotBlank(message = "Password is mandatory")
     private String password;
-    @NotBlank(message = "FullName is mandatory")
+    @NotBlank(message = "Full name is mandatory")
     private String fullname;
     @Column(columnDefinition = "varchar(25) default 'USER'")
     private String role = "USER";

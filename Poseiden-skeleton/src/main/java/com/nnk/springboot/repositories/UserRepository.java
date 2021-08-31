@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecifi
     @Query("select a from User a where a.username=:username")
     User getByUsername(String username);
 
+/*    @Query("select a from User a where a.username=:username and a.password=:password")
+    User checkPassword(String username, String password);*/
 }

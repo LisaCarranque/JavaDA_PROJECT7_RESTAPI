@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
 public class BidListTest {
@@ -20,7 +21,7 @@ public class BidListTest {
                 .benchmark("benchmark").bidListDate(new Timestamp(1000)).commentary("Commentary")
                 .security("Security").status("Status").trader("Trader")
                 .book("Book").creationName("Creation Name").revisionName("Revision Name")
-                .revisionDate(new Timestamp(1000)).dealName("Deal Name")
+                .revisionDate(new Timestamp(1000)).creationDate(new Timestamp(1000)).dealName("Deal Name")
                 .dealType("Deal Type").sourceListId("Source List Id").side("Side").build();
         assertEquals(Integer.valueOf(1), bidList.getBidListId());
         assertEquals(Double.valueOf(10.00), bidList.getBidQuantity());
@@ -38,8 +39,10 @@ public class BidListTest {
         assertEquals("Book", bidList.getBook());
         assertEquals("Creation Name", bidList.getCreationName());
         assertEquals("Revision Name", bidList.getRevisionName());
+        assertEquals(new Timestamp(1000), bidList.getCreationDate());
         assertEquals(new Timestamp(1000), bidList.getRevisionDate());
         assertEquals("Deal Type", bidList.getDealType());
+        assertEquals("Deal Name", bidList.getDealName());
         assertEquals("Source List Id", bidList.getSourceListId());
         assertEquals("Side", bidList.getSide());
 
@@ -64,6 +67,7 @@ public class BidListTest {
         bidList.setBook("Book");
         bidList.setCreationName("Creation Name");
         bidList.setRevisionName("Revision Name");
+        bidList.setCreationDate(new Timestamp(1000));
         bidList.setRevisionDate(new Timestamp(1000));
         bidList.setDealName("Deal Name");
         bidList.setDealType("Deal Type");
@@ -87,8 +91,31 @@ public class BidListTest {
         assertEquals("Revision Name", bidList.getRevisionName());
         assertEquals(new Timestamp(1000), bidList.getRevisionDate());
         assertEquals("Deal Type", bidList.getDealType());
+        assertEquals("Deal Name", bidList.getDealName());
         assertEquals("Source List Id", bidList.getSourceListId());
         assertEquals("Side", bidList.getSide());
     }
+
+    @Test
+    public void testToString() {
+        BidList bidList = BidList.builder().bidListId(1).bidQuantity(10.00).account("Account")
+                .type("Type").askQuantity(10.00).bid(10.00).ask(10.00)
+                .benchmark("benchmark").bidListDate(new Timestamp(1000)).commentary("Commentary")
+                .security("Security").status("Status").trader("Trader")
+                .book("Book").creationName("Creation Name").revisionName("Revision Name")
+                .revisionDate(new Timestamp(1000)).creationDate(new Timestamp(1000)).dealName("Deal Name")
+                .dealType("Deal Type").sourceListId("Source List Id").side("Side").build();
+        assertEquals( "1",bidList.getBidListId().toString());
+        assertEquals( "10.0",bidList.getAskQuantity().toString());
+        assertEquals( "10.0",bidList.getBid().toString());
+        assertEquals( "10.0",bidList.getAsk().toString());
+        assertEquals( "1970-01-01 01:00:01.0",bidList.getBidListDate().toString());
+        assertEquals( "1970-01-01 01:00:01.0",bidList.getRevisionDate().toString());
+        assertEquals( "1970-01-01 01:00:01.0",bidList.getCreationDate().toString());
+        assertNotNull(bidList.toString());
+        BidList bidList2 = new BidList();
+        assertEquals(bidList2.toString(),bidList2.toString());
+    }
+
 
 }
