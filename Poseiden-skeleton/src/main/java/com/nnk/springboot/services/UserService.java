@@ -22,6 +22,7 @@ public class UserService implements IUserService {
 
     /**
      * This method displays all users by calling findAll method from UserRepository
+     *
      * @return a list of all users existing in database
      */
     @Override
@@ -33,6 +34,7 @@ public class UserService implements IUserService {
 
     /**
      * This method adds a user by calling save method from UserRepository
+     *
      * @param user the user to add
      * @return the new user saved into database
      */
@@ -45,6 +47,7 @@ public class UserService implements IUserService {
 
     /**
      * This method updates a user by calling save method from UserRepository
+     *
      * @param user the user to update
      * @return the updated user
      */
@@ -57,6 +60,7 @@ public class UserService implements IUserService {
 
     /**
      * This method selects an existing user by id from database by calling getOne method of UserRepository
+     *
      * @param id the id of the targeted user
      * @return the selected user from database
      */
@@ -69,6 +73,7 @@ public class UserService implements IUserService {
 
     /**
      * This method removes a user from database by calling delete method from UserRepository
+     *
      * @param user the user to remove
      */
     @Override
@@ -80,6 +85,7 @@ public class UserService implements IUserService {
 
     /**
      * This method gets a user from database by username by calling getByUsername method from UserRepository
+     *
      * @param username the targeted username
      */
     @Override

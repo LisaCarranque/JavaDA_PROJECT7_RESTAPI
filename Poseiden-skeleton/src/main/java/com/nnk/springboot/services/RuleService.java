@@ -22,6 +22,7 @@ public class RuleService implements IRuleService {
 
     /**
      * This method displays all rules by calling findAll method from RuleRepository
+     *
      * @return a list of all rules existing in database
      */
     @Override
@@ -33,6 +34,7 @@ public class RuleService implements IRuleService {
 
     /**
      * This method adds a rule by calling save method from RuleRepository
+     *
      * @param rule the rule to add
      * @return the new rule saved into database
      */
@@ -45,6 +47,7 @@ public class RuleService implements IRuleService {
 
     /**
      * This method updates a rule by calling save method from RuleRepository
+     *
      * @param rule the rule to update
      * @return the updated rule
      */
@@ -57,6 +60,7 @@ public class RuleService implements IRuleService {
 
     /**
      * This method selects an existing rule by id from database by calling getOne method of RuleRepository
+     *
      * @param id the id of the targeted rule
      * @return the selected rule from database
      */
@@ -69,6 +73,7 @@ public class RuleService implements IRuleService {
 
     /**
      * This method removes a rule from database by calling delete method from RuleRepository
+     *
      * @param rule the rule to remove
      */
     @Override

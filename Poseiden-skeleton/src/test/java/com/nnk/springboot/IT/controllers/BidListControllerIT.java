@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -22,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @EntityScan(basePackageClasses = {BidList.class})
 @EnableAutoConfiguration
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 public class BidListControllerIT {
 
     @Autowired
@@ -32,7 +34,7 @@ public class BidListControllerIT {
 
     @WithMockUser("jeanneDupont")
     @Test
-    public void list_bidList() throws Exception {
+    public void listBidList() throws Exception {
         this.mvc.perform(get("/bidList/list"))
                 .andExpect(status().isOk())
                 .andReturn();

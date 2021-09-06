@@ -22,6 +22,7 @@ public class RatingService implements IRatingService {
 
     /**
      * This method displays all ratings by calling findAll method from RatingRepository
+     *
      * @return a list of all rating existing in database
      */
     @Override
@@ -33,6 +34,7 @@ public class RatingService implements IRatingService {
 
     /**
      * This method adds a rating by calling save method from RatingRepository
+     *
      * @param rating the rating to add
      * @return the new rating saved into database
      */
@@ -45,6 +47,7 @@ public class RatingService implements IRatingService {
 
     /**
      * This method updates a rating by calling save method from RatingRepository
+     *
      * @param rating the rating to update
      * @return the updated rating
      */
@@ -57,6 +60,7 @@ public class RatingService implements IRatingService {
 
     /**
      * This method selects an existing rating by id from database by calling getOne method of RatingRepository
+     *
      * @param id the id of the targeted rating
      * @return the selected rating from database
      */
@@ -69,6 +73,7 @@ public class RatingService implements IRatingService {
 
     /**
      * This method removes a rating from database by calling delete method from RatingRepository
+     *
      * @param rating the rating to remove
      */
     @Override

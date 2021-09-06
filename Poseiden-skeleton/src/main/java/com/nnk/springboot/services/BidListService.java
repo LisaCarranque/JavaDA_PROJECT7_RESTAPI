@@ -22,6 +22,7 @@ public class BidListService implements IBidListService {
 
     /**
      * This method displays all bidlists by calling findAll method from BidListRepository
+     *
      * @return a list of all bidList existing in database
      */
     @Override
@@ -33,6 +34,7 @@ public class BidListService implements IBidListService {
 
     /**
      * This method adds a bidList by calling save method from BidListRepository
+     *
      * @param bidList the bidList to add
      * @return the new bidList saved into database
      */
@@ -45,6 +47,7 @@ public class BidListService implements IBidListService {
 
     /**
      * This method updates a bidList by calling save method from BidListRepository
+     *
      * @param bidList the bidList to update
      * @return the updated bidList
      */
@@ -57,6 +60,7 @@ public class BidListService implements IBidListService {
 
     /**
      * This method selects an existing bidList by id from database by calling getOne method of BidListRepository
+     *
      * @param id the id of the targeted bidList
      * @return the selected bidList from database
      */
@@ -69,6 +73,7 @@ public class BidListService implements IBidListService {
 
     /**
      * This method removes a bidList from database by calling delete method from BidListRepository
+     *
      * @param bidList the bidList to remove
      */
     @Override

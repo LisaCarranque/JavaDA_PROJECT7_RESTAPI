@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -20,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @EntityScan(basePackageClasses = {UserService.class})
 @EnableAutoConfiguration
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 public class UserControllerIT {
 
     @Autowired
@@ -30,7 +32,7 @@ public class UserControllerIT {
 
     @WithMockUser("jeanneDupont")
     @Test
-    public void list_bidList() throws Exception {
+    public void listUser() throws Exception {
         this.mvc.perform(get("/user/list"))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -38,7 +40,7 @@ public class UserControllerIT {
 
     @WithMockUser("jeanneDupont")
     @Test
-    public void addBidList() throws Exception {
+    public void addUser() throws Exception {
         this.mvc.perform(get("/user/add"))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -46,7 +48,7 @@ public class UserControllerIT {
 
     @WithMockUser("jeanneDupont")
     @Test
-    public void deleteBidList() throws Exception {
+    public void deleteUser() throws Exception {
         this.mvc.perform(get("/user/delete/201"))
                 .andExpect(status().is(302))
                 .andExpect(redirectedUrl("/user/list"))

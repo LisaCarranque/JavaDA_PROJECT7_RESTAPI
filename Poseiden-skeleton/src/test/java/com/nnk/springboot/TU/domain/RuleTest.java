@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RuleTest {
 
     @Test
-    public void setAndgetTest() {
+    public void setAndGetTest() {
         Rule rule = Rule.builder().build();
         rule.setName("name");
         rule.setId(1);

@@ -1,11 +1,8 @@
 package com.nnk.springboot.IT.services;
 
 import com.nnk.springboot.Application;
-import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.domain.User;
-import com.nnk.springboot.repositories.TradeRepository;
 import com.nnk.springboot.repositories.UserRepository;
-import com.nnk.springboot.services.TradeService;
 import com.nnk.springboot.services.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
@@ -25,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @EnableJpaRepositories(basePackageClasses = {UserRepository.class})
 @EntityScan(basePackageClasses = {User.class})
 @ContextConfiguration
+@ActiveProfiles("test")
 public class UserServiceIT {
 
     @Autowired
