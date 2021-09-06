@@ -15,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -25,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @EntityScan(basePackageClasses = {CurveService.class})
 @EnableAutoConfiguration
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 public class CurveControllerIT {
 
     @Autowired
@@ -35,7 +37,7 @@ public class CurveControllerIT {
 
     @WithMockUser("jeanneDupont")
     @Test
-    public void list_bidList() throws Exception {
+    public void listCurve() throws Exception {
         this.mvc.perform(get("/curvePoint/list"))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -43,7 +45,7 @@ public class CurveControllerIT {
 
     @WithMockUser("jeanneDupont")
     @Test
-    public void addBidList() throws Exception {
+    public void addCurve() throws Exception {
         this.mvc.perform(get("/curvePoint/add"))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -51,7 +53,7 @@ public class CurveControllerIT {
 
     @WithMockUser("jeanneDupont")
     @Test
-    public void deleteBidList() throws Exception {
+    public void deleteCurve() throws Exception {
         this.mvc.perform(get("/curvePoint/delete/201"))
                 .andExpect(status().is(302))
                 .andExpect(redirectedUrl("/curvePoint/list"))

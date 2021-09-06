@@ -39,8 +39,6 @@ public class CurvePointTest {
         CurvePoint curvePoint = CurvePoint.builder()
                 .id(1).curveId(1).value(10.00).term(10.00).build();
         assertNotNull(curvePoint.toString());
-        CurvePoint curvePoint1 = CurvePoint.builder().build();
-        //assertEquals("", curvePoint1.toString());
     }
 
 }

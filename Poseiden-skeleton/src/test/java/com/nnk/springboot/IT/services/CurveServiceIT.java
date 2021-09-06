@@ -1,11 +1,8 @@
 package com.nnk.springboot.IT.services;
 
 import com.nnk.springboot.Application;
-import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.repositories.CurvePointRepository;
-import com.nnk.springboot.services.BidListService;
 import com.nnk.springboot.services.CurveService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
@@ -24,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @EnableJpaRepositories(basePackageClasses = {CurvePointRepository.class})
 @EntityScan(basePackageClasses = {CurvePoint.class})
 @ContextConfiguration
+@ActiveProfiles("test")
 public class CurveServiceIT {
 
     @Autowired

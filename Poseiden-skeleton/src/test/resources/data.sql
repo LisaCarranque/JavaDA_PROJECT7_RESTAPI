@@ -2,7 +2,7 @@
 
 use test;
 
-insert ignore  into users(id, username,password,fullname, role) values ('200', 'jeanneDupont', '$2a$10$g13kP0.Wo8sNM9vMM3FsIuUVlCmA6Qg21cJT5182cTeCwTsYUJvcG', 'JeanneDupont', 'USER');
+insert ignore  into users(id, username,password,fullname, role) values ('200', 'jeanneDupont', '$2a$10$pi/L5GQiL/Yf2BvKKSOJR.krx4UWi5najPzQdgg4VzBCRHFDVLpPi', 'JeanneDupont', 'ADMIN');
 insert ignore  into trade(trade_id, account,buy_quantity,type) values ('200', 'account', 10.00, 'type');
 insert ignore  into bid_list(bid_list_id, account) values ('200', 'account');
 insert ignore  into bid_list(bid_list_id, account) values ('201', 'account');

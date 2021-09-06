@@ -60,7 +60,7 @@ public class UserController {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
             userService.add(user);
-            log.info("new user saved into database: "+user.getId());
+            log.info("new user saved into database: " + user.getId());
             String successMessage = "Account created";
             model.addAttribute("successMessage", successMessage);
             model.addAttribute("users", userService.findAll());
@@ -96,7 +96,7 @@ public class UserController {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setId(id);
         userService.update(user);
-        log.info("user information successfully updated for user:"+user.getId());
+        log.info("user information successfully updated for user:" + user.getId());
         model.addAttribute("users", userService.findAll());
         log.trace("Redirect to user/list view");
         return "redirect:/user/list";

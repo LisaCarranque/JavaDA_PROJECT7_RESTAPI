@@ -46,7 +46,6 @@ public class CurveControllerTest {
 
     @Test
     public void showUpdateForm() {
-        BidList bidList = BidList.builder().bidListId(1).bidQuantity(10.00).build();
         curveController.showUpdateForm(1, model);
         verify(curveService, times(1)).getById(1);
     }

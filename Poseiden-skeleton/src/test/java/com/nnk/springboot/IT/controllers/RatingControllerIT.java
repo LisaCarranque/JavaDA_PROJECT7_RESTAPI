@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @EntityScan(basePackageClasses = {RatingService.class})
 @EnableAutoConfiguration
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 public class RatingControllerIT {
 
 
@@ -35,7 +37,7 @@ public class RatingControllerIT {
 
     @WithMockUser("jeanneDupont")
     @Test
-    public void list_bidList() throws Exception {
+    public void listRating() throws Exception {
         this.mvc.perform(get("/rating/list"))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -43,7 +45,7 @@ public class RatingControllerIT {
 
     @WithMockUser("jeanneDupont")
     @Test
-    public void addBidList() throws Exception {
+    public void addRating() throws Exception {
         this.mvc.perform(get("/rating/add"))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -51,7 +53,7 @@ public class RatingControllerIT {
 
     @WithMockUser("jeanneDupont")
     @Test
-    public void deleteBidList() throws Exception {
+    public void deleteRating() throws Exception {
         this.mvc.perform(get("/rating/delete/201"))
                 .andExpect(status().is(302))
                 .andExpect(redirectedUrl("/rating/list"))

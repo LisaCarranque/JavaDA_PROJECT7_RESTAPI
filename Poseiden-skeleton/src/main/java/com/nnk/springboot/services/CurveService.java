@@ -22,6 +22,7 @@ public class CurveService implements ICurveService {
 
     /**
      * This method displays all curvePoint entries by calling findAll method from CurvePointRepository
+     *
      * @return a list of all curvePoint entries existing in database
      */
     @Override
@@ -33,6 +34,7 @@ public class CurveService implements ICurveService {
 
     /**
      * This method adds a curvePoint by calling save method from CurvePointRepository
+     *
      * @param curvePoint the curvePoint to add
      * @return the new curvePoint saved into database
      */
@@ -45,6 +47,7 @@ public class CurveService implements ICurveService {
 
     /**
      * This method updates a curvePoint by calling save method from CurvePointRepository
+     *
      * @param curvePoint the curvePoint to update
      * @return the updated curvePoint
      */
@@ -57,6 +60,7 @@ public class CurveService implements ICurveService {
 
     /**
      * This method selects an existing curvePoint by id from database by calling getOne method of CurvePointRepository
+     *
      * @param id the id of the targeted curvePoint
      * @return the selected curvePoint from database
      */
@@ -70,6 +74,7 @@ public class CurveService implements ICurveService {
 
     /**
      * This method removes a curvePoint from database by calling delete method from CurvePointRepository
+     *
      * @param curvePoint the curvePoint to remove from database
      */
     @Override

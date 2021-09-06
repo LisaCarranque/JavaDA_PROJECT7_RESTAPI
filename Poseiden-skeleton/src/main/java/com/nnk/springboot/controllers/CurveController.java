@@ -26,7 +26,7 @@ public class CurveController {
 
     @RequestMapping("/curvePoint/list")
     public String home(Model model) {
-        log.trace("Load curve point data" );
+        log.trace("Load curve point data");
         model.addAttribute("curvePoint", curveService.findAll());
         log.trace("Display curvePoint/list view");
         return "curvePoint/list";
@@ -45,7 +45,7 @@ public class CurveController {
             return "curvePoint/add";
         } else {
             curveService.add(curvePoint);
-            log.info("New curvePoint added: "+curvePoint.getCurveId());
+            log.info("New curvePoint added: " + curvePoint.getCurveId());
             model.addAttribute("curveList", curveService.findAll());
             log.trace("Redirect to curvePoint/list view");
             return "redirect:/curvePoint/list";
@@ -55,7 +55,7 @@ public class CurveController {
     @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("curvePointToUpdate", curveService.getById(id));
-        log.info("CurvePoint to update selected by id: "+id);
+        log.info("CurvePoint to update selected by id: " + id);
         log.trace("Display curvePoint/update view");
         return "curvePoint/update";
     }
@@ -64,7 +64,7 @@ public class CurveController {
     public String updateBid(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
                             BindingResult result, Model model) {
         curveService.update(curvePoint);
-        log.info("curvePoint updated: " +id);
+        log.info("curvePoint updated: " + id);
         model.addAttribute("curveList", curveService.findAll());
         log.trace("Redirect to curvePoint/list view");
         return "redirect:/curvePoint/list";
@@ -73,7 +73,7 @@ public class CurveController {
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         curveService.delete(curveService.getById(id));
-        log.info("curvePoint deleted: "+id);
+        log.info("curvePoint deleted: " + id);
         model.addAttribute("curveList", curveService.findAll());
         log.trace("Redirect to curvePoint/list view");
         return "redirect:/curvePoint/list";

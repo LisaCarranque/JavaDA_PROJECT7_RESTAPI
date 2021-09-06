@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @EnableJpaRepositories(basePackageClasses = {TradeRepository.class})
 @EntityScan(basePackageClasses = {Trade.class})
 @ContextConfiguration
+@ActiveProfiles("test")
 public class TradeServiceIT {
 
     @Autowired

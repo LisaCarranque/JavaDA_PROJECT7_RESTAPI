@@ -26,7 +26,7 @@ public class RuleController {
 
     @RequestMapping("/rule/list")
     public String home(Model model) {
-        log.trace("Load rule data" );
+        log.trace("Load rule data");
         model.addAttribute("rules", ruleService.findAll());
         log.trace("Display rule/list view");
         return "rule/list";
@@ -41,7 +41,7 @@ public class RuleController {
     @PostMapping("/rule/validate")
     public String validate(@Valid Rule rule, BindingResult result, Model model) {
         ruleService.add(rule);
-        log.info("New rule added: "+rule.getId());
+        log.info("New rule added: " + rule.getId());
         model.addAttribute("rules", ruleService.findAll());
         log.trace("Redirect to rule/list view");
         return "rule/list";
@@ -50,7 +50,7 @@ public class RuleController {
     @GetMapping("/rule/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("ruleToUpdate", ruleService.getById(id));
-        log.info("Rule to update selected by id: " +id);
+        log.info("Rule to update selected by id: " + id);
         log.trace("Display rule/update view");
         return "rule/update";
     }
@@ -59,7 +59,7 @@ public class RuleController {
     public String updateRuleName(@PathVariable("id") Integer id, @Valid Rule rule,
                                  BindingResult result, Model model) {
         ruleService.update(rule);
-        log.info("rule updated: " +id);
+        log.info("rule updated: " + id);
         model.addAttribute("rules", ruleService.findAll());
         log.trace("Redirect to rule/list view");
         return "redirect:/rule/list";
@@ -67,7 +67,7 @@ public class RuleController {
 
     @GetMapping("/rule/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
-        log.info("rule deleted: "+id);
+        log.info("rule deleted: " + id);
         ruleService.delete(ruleService.getById(id));
         model.addAttribute("rules", ruleService.findAll());
         log.trace("Redirect to rule/list view");

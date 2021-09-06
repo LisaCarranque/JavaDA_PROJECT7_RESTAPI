@@ -26,7 +26,7 @@ public class RatingController {
 
     @RequestMapping("/rating/list")
     public String home(Model model) {
-        log.trace("Load rating data" );
+        log.trace("Load rating data");
         model.addAttribute("ratings", ratingService.findAll());
         log.trace("Display rating/list view");
         return "rating/list";
@@ -44,7 +44,7 @@ public class RatingController {
             log.error("Invalid rating");
             return "/rating/add";
         } else {
-            log.info("New rating added: "+rating.getId());
+            log.info("New rating added: " + rating.getId());
             ratingService.add(rating);
             model.addAttribute("ratings", ratingService.findAll());
             log.trace("Redirect to rating/list view");
@@ -55,7 +55,7 @@ public class RatingController {
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("ratingToUpdate", ratingService.getById(id));
-        log.info("Rating to update selected by id: " +id);
+        log.info("Rating to update selected by id: " + id);
         log.trace("Display rating/update view");
         return "rating/update";
     }
@@ -64,7 +64,7 @@ public class RatingController {
     public String updateRating(@PathVariable("id") Integer id, @Valid Rating rating,
                                BindingResult result, Model model) {
         ratingService.update(rating);
-        log.info("rating updated: " +id);
+        log.info("rating updated: " + id);
         model.addAttribute("ratings", ratingService.findAll());
         log.trace("Redirect to rating/list view");
         return "redirect:/rating/list";
@@ -72,7 +72,7 @@ public class RatingController {
 
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
-        log.info("rating deleted: "+id);
+        log.info("rating deleted: " + id);
         ratingService.delete(ratingService.getById(id));
         model.addAttribute("ratings", ratingService.findAll());
         log.trace("Redirect to rating/list view");

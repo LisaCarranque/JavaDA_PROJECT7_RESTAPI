@@ -26,7 +26,7 @@ public class BidListController {
 
     @RequestMapping("/bidList/list")
     public String home(Model model) {
-        log.trace("Load bid list" );
+        log.trace("Load bid list");
         model.addAttribute("bidList", bidListService.findAll());
         log.trace("Display bidList/list view");
         return "bidList/list";
@@ -45,7 +45,7 @@ public class BidListController {
             return "bidList/add";
         } else {
             bidListService.add(bid);
-            log.info("New bid added: "+bid.getBidListId());
+            log.info("New bid added: " + bid.getBidListId());
             model.addAttribute("bidList", bidListService.findAll());
             log.trace("Redirect to bidList/list view");
             return "redirect:/bidList/list";
@@ -55,7 +55,7 @@ public class BidListController {
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("bidListToUpdate", bidListService.getById(id));
-        log.info("BidList to update selected by id: "+id);
+        log.info("BidList to update selected by id: " + id);
         log.trace("Display bidList/update view");
         return "bidList/update";
     }
@@ -64,7 +64,7 @@ public class BidListController {
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                             BindingResult result, Model model) {
         bidListService.update(bidList);
-        log.info("bidList updated: " +id);
+        log.info("bidList updated: " + id);
         model.addAttribute("bidList", bidListService.findAll());
         log.trace("Redirect to bidList/list view");
         return "redirect:/bidList/list";
@@ -73,7 +73,7 @@ public class BidListController {
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         bidListService.delete(bidListService.getById(id));
-        log.info("bidList deleted: "+id);
+        log.info("bidList deleted: " + id);
         model.addAttribute("bidList", bidListService.findAll());
         log.trace("Redirect to bidList/list view");
         return "redirect:/bidList/list";

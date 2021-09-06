@@ -26,7 +26,7 @@ public class TradeController {
 
     @RequestMapping("/trade/list")
     public String home(Model model) {
-        log.trace("Load trade data" );
+        log.trace("Load trade data");
         model.addAttribute("trades", tradeService.findAll());
         log.trace("Display trade/list view");
         return "trade/list";
@@ -44,7 +44,7 @@ public class TradeController {
             log.error("Invalid trade");
             return "/trade/add";
         } else {
-            log.info("New trade added: "+trade.getTradeId());
+            log.info("New trade added: " + trade.getTradeId());
             tradeService.add(trade);
             model.addAttribute("trades", tradeService.findAll());
             log.trace("Redirect to trade/list view");
@@ -55,7 +55,7 @@ public class TradeController {
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("tradeToUpdate", tradeService.getById(id));
-        log.info("Trade to update selected by id: " +id);
+        log.info("Trade to update selected by id: " + id);
         log.trace("Display trade/update view");
         return "trade/update";
     }
@@ -64,7 +64,7 @@ public class TradeController {
     public String updateTrade(@PathVariable("id") Integer id, @Valid Trade trade,
                               BindingResult result, Model model) {
         tradeService.update(trade);
-        log.info("trade updated: " +id);
+        log.info("trade updated: " + id);
         model.addAttribute("trades", tradeService.findAll());
         log.trace("Redirect to trade/list view");
         return "redirect:/trade/list";
@@ -72,7 +72,7 @@ public class TradeController {
 
     @GetMapping("/trade/delete/{id}")
     public String deleteTrade(@PathVariable("id") Integer id, Model model) {
-        log.info("trade deleted: "+id);
+        log.info("trade deleted: " + id);
         tradeService.delete(tradeService.getById(id));
         model.addAttribute("trades", tradeService.findAll());
         log.trace("Redirect to trade/list view");
