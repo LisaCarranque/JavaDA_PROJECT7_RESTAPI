@@ -1,10 +1,8 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.config.CustomUserDetailsService;
 import com.nnk.springboot.services.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +16,6 @@ public class HomeController {
 
     @Autowired
     UserService userService;
-
-    @Autowired
-    CustomUserDetailsService userDetailsService;
-
-    @Autowired
-    AuthenticationManager authenticationManager;
 
 
     @RequestMapping("/welcome")
