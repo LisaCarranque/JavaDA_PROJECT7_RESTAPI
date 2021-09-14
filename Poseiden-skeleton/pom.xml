@@ -193,23 +193,7 @@
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>config</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<profiles>
-						<profile>dev</profile>
-						<profile>prod</profile>
-					</profiles>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
